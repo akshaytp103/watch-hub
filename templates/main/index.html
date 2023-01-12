@@ -1,0 +1,103 @@
+
+{% extends 'main/userbase.html' %} 
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+	<!-- hero area -->
+	<div class="hero-area hero-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 offset-lg-2 text-center">
+					<div class="hero-text">
+						<div class="hero-text-tablecell">
+							<div class="hero-btns">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end hero area -->
+
+	<!-- features list section -->
+	<div class="list-section pt-80 pb-80">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-shipping-fast"></i>
+						</div>
+						<div class="content">
+							<h3>Free Shipping</h3>
+							<p>When order over 75</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+					<div class="list-box d-flex align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-phone-volume"></i>
+						</div>
+						<div class="content">
+							<h3>24/7 Support</h3>
+							<p>Get support all day</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="list-box d-flex justify-content-start align-items-center">
+						<div class="list-icon">
+							<i class="fas fa-sync"></i>
+						</div>
+						<div class="content">
+							<h3>Refund</h3>
+							<p>Get refund within 3 days!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end features list section -->
+
+	<!-- product section -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					
+					<div class="section-title">	
+						<h3><span class="orange-text">Our</span> Products</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+					</div>
+				</div>
+			</div>			
+			<div class="row">				
+				{% for product in products %}
+				<div class="col-lg-4 col-md-6 text-center">					
+					<div class="single-product-item">
+						<div class="product-image">
+						</div>
+						<a href="{{product.get_url}}"><img src="{{product.image.url}}" alt="loading"></a>
+						<a href="{{product.get_url}}"><h3 class="card-title">{{product.productname}}</h3></a>
+						<a href=""><h4 class="product-color">{{product.strapcolor}}</h4></a>
+						<p class="product-price">₹{{product.price}} </p>
+					    <a href="{% url 'product-details' product.slug %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> view more</a>
+					</div>					
+				</div>
+				{%endfor%}				
+				
+			</div>
+		</div>
+	</div>
+	
+	<!-- end product section -->
+	{% endblock %}
+
+	

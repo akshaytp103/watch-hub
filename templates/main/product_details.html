@@ -1,0 +1,88 @@
+{% extends 'main/userbase.html' %} 
+{% load static %}
+{% block title %}cart{% endblock %}
+{% block content %}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>ABSOLUTE
+						TOUGHNESS</p>
+					<h1>product details</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end breadcrumb section -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>eCommerce Product Detail</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'pcss.css' %}">
+
+</head>
+
+<body>
+  
+    <div class="container">
+		{% for item in items %}
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">		
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1"><img src="{{item.image.url}}" /></div>
+						  
+						</div>
+						<ul class="preview-thumbnail nav nav-tabs">
+						  
+						</ul>
+						
+					</div>
+					<div class="details col-md-6">
+						<h3 class="product-title">Model:{{item.productname}}</h3>
+						<div class="rating">
+							<div class="stars">
+								
+							</div>
+							<!-- <span class="review-no">41 reviews</span> -->
+						</div>
+						<h5 class="product-description">Color:{{item.strapcolor}}</h5>
+						<h4 class="price">current price: <span>₹{{item.price}}</span></h4>
+						<form action="{% url 'add_cart' item.id %}" method="POST">
+							{% csrf_token %}								
+					 		<div class="colors col-md-3">								
+							</div>
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">
+									<div class="d-flex p-4">
+										{% if single_product.stock <= 0 %}
+											<h5>Out stock</h5>
+										{% else %}
+											<button class="add-to-cart btn btn-default" type="submit">add to cart</button>
+										{%endif%}								
+									</div>																
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		{%endfor%}
+	</div>
+  </body>
+</html>
+{%endblock%}
